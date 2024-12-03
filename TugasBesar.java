@@ -1,15 +1,15 @@
 import java.util.Scanner;
 
 public class TugasBesar {
-    static String tambahData() {
+    }
+
+    static void tampilData() {
 
     }
-    static String tampilData() {
-
+    static void analisisData() {
+      
     }
-    static String analisisData() {
 
-    }
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         int menu;
@@ -21,6 +21,7 @@ public class TugasBesar {
             System.out.println("4. Keluar");
             System.out.print("Pilih menu: ");
             menu = sc.nextInt();
+            sc.nextLine(); 
             switch (menu) {
                 case 1:
                     tambahData();
@@ -34,6 +35,8 @@ public class TugasBesar {
                 case 4:
                     System.out.println("Terima kasih!");
                     break;
+                default:
+                    System.out.println("Pilihan menu tidak valid.");
             }
         } while (menu != 4);
     }
