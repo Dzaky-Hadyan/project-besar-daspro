@@ -57,8 +57,7 @@ public class TugasBesar {
     }
 
     public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        int menu;
+        int menu, i = 0, j = 0;
         do {
             System.out.println("=== Sistem Pemantauan KRS Mahasiswa ===");
             System.out.println("1. Tambah Data KRS");
@@ -70,7 +69,7 @@ public class TugasBesar {
             sc.nextLine(); 
             switch (menu) {
                 case 1:
-                    tambahData();
+                    tambahData(i, j);
                     break;
                 case 2:
                     tampilData();
@@ -84,6 +83,9 @@ public class TugasBesar {
                 default:
                     System.out.println("Pilihan menu tidak valid.");
             }
+            i++;
+            j++;
         } while (menu != 4);
+        sc.close();
     }
 }
