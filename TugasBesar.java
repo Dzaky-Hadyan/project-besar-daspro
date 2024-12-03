@@ -1,7 +1,7 @@
 import java.util.Scanner;
 
 public class TugasBesar {
-    
+
     static int MAX_MAHASISWA = 100;
     static String[] nimMahasiswa = new String[MAX_MAHASISWA];
     static String[] namaMahasiswa = new String[MAX_MAHASISWA];
@@ -30,8 +30,8 @@ public class TugasBesar {
             String namaMk = sc.nextLine();
             System.out.print("Jumlah SKS (1-3): ");
             int sks = sc.nextInt();
-            sc.nextLine(); 
-
+            sc.nextLine();
+            
             kodeMatkul[jumlahMahasiswa][jumlahMatkul] = kode;
             namaMatkul[jumlahMahasiswa][jumlahMatkul] = namaMk;
             sksMatkul[jumlahMahasiswa][jumlahMatkul] = sks;
@@ -44,19 +44,30 @@ public class TugasBesar {
 
             jumlahMatkul++;
         }
-        
+
         jumlahMatkulPerMahasiswa[jumlahMahasiswa] = jumlahMatkul + 1;
         jumlahMahasiswa++;
-        sc.close();
     }
 
     static void tampilData() {
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Masukkan NIM mahasiswa: ");
+        String nim = sc.nextLine();
 
+        System.out.println("Daftar KRS: ");
+        System.out.printf("%-15s %-25s %-20s %-20s %-25s%n", "NIM", "Nama", "Kode MK", "Nama Mata Kuliah", "SKS");
+        for (int i = 0; i < jumlahMahasiswa; i++) {
+            if (nimMahasiswa[i].equals(nim)) {
+                for (int j = 0; j < jumlahMatkulPerMahasiswa[i]; j++) {
+                    System.out.printf("%-15s %-25s %-20s %-20s %-25s%n", nimMahasiswa[i], namaMahasiswa[i], kodeMatkul[i][j], namaMatkul[i][j], sksMatkul[i][j]);
+                }
+                System.out.printf("Total SKS: %d\n", totalSks[i]);
+            }
+        }
     }
     static void analisisData() {
-      
-    }
 
+    }
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         int menu;
@@ -68,7 +79,7 @@ public class TugasBesar {
             System.out.println("4. Keluar");
             System.out.print("Pilih menu: ");
             menu = sc.nextInt();
-            sc.nextLine(); 
+            sc.nextLine();
             switch (menu) {
                 case 1:
                     tambahData();
@@ -83,9 +94,8 @@ public class TugasBesar {
                     System.out.println("Terima kasih!");
                     break;
                 default:
-                    System.out.println("Pilihan menu tidak valid.");
+                    System.out.println("Pilihan tidak valid.");
             }
         } while (menu != 4);
-        sc.close();
     }
 }
