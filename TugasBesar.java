@@ -44,9 +44,10 @@ public class TugasBesar {
 
             jumlahMatkul++;
         }
-
+        
         jumlahMatkulPerMahasiswa[jumlahMahasiswa] = jumlahMatkul + 1;
         jumlahMahasiswa++;
+        sc.close();
     }
 
     static void tampilData() {
@@ -57,7 +58,8 @@ public class TugasBesar {
     }
 
     public static void main(String[] args) {
-        int menu, i = 0, j = 0;
+        Scanner sc = new Scanner(System.in);
+        int menu;
         do {
             System.out.println("=== Sistem Pemantauan KRS Mahasiswa ===");
             System.out.println("1. Tambah Data KRS");
@@ -69,7 +71,7 @@ public class TugasBesar {
             sc.nextLine(); 
             switch (menu) {
                 case 1:
-                    tambahData(i, j);
+                    tambahData();
                     break;
                 case 2:
                     tampilData();
@@ -83,8 +85,6 @@ public class TugasBesar {
                 default:
                     System.out.println("Pilihan menu tidak valid.");
             }
-            i++;
-            j++;
         } while (menu != 4);
         sc.close();
     }
