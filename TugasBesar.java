@@ -10,7 +10,7 @@ public class TugasBesar {
     static int[][] sksMatkul = new int[MAX_MAHASISWA][10];
     static int[] totalSks = new int[MAX_MAHASISWA];
     static int[] jumlahMatkulPerMahasiswa = new int[MAX_MAHASISWA];
-    static int jumlahMahasiswa = 0;
+    static int jumlahMahasiswa = 0, jumlahMahasiswaSKSKurangdari20 = 0;
 
     static void tambahData() {
         Scanner sc = new Scanner(System.in);
@@ -31,7 +31,10 @@ public class TugasBesar {
             System.out.print("Jumlah SKS (1-3): ");
             int sks = sc.nextInt();
             sc.nextLine();
-            
+            if (sks > 3) {
+                System.out.println("Jumlah SKS tidak valid! SKS harus antara 1 dan 3.");
+                continue;
+            } else {
             kodeMatkul[jumlahMahasiswa][jumlahMatkul] = kode;
             namaMatkul[jumlahMahasiswa][jumlahMatkul] = namaMk;
             sksMatkul[jumlahMahasiswa][jumlahMatkul] = sks;
@@ -43,8 +46,8 @@ public class TugasBesar {
             if (lanjut.equalsIgnoreCase("t")) break;
 
             jumlahMatkul++;
+            }
         }
-
         jumlahMatkulPerMahasiswa[jumlahMahasiswa] = jumlahMatkul + 1;
         jumlahMahasiswa++;
     }
@@ -61,12 +64,36 @@ public class TugasBesar {
                 for (int j = 0; j < jumlahMatkulPerMahasiswa[i]; j++) {
                     System.out.printf("%-15s %-25s %-20s %-20s %-25s%n", nimMahasiswa[i], namaMahasiswa[i], kodeMatkul[i][j], namaMatkul[i][j], sksMatkul[i][j]);
                 }
+                if (totalSks[i] < 20) {
+                    jumlahMahasiswaSKSKurangdari20++;
+                }
                 System.out.printf("Total SKS: %d\n", totalSks[i]);
             }
         }
     }
     static void analisisData() {
-
+        boolean[] sudahDihitung = new boolean[jumlahMahasiswa];
+        for (int i = 0; i < jumlahMahasiswa; i++) {
+            if (!sudahDihitung[i]) {
+                int totalSKSperMahasiswa = 0;
+                String nim = nimMahasiswa[i];
+                for (int j = 0; j < jumlahMahasiswa; j++) {
+                    if (nimMahasiswa[j].equals(nim)) {
+                        totalSKSperMahasiswa += totalSks[j];
+                        sudahDihitung[j] = true;
+                    }
+                }
+                if (totalSKSperMahasiswa < 20) {
+                    jumlahMahasiswaSKSKurangdari20++;
+                }
+            }
+        }
+        /* emu 5, nene 3, rui 2
+         * 
+         * 
+         */
+        System.out.println("--- Analisis Data KRS ---");
+        System.out.printf("Jumlah mahasiswa yang mengambil SKS kurang dari 20: %d\n", jumlahMahasiswaSKSKurangdari20);
     }
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
@@ -97,5 +124,6 @@ public class TugasBesar {
                     System.out.println("Pilihan tidak valid.");
             }
         } while (menu != 4);
+        sc.close();
     }
 }
