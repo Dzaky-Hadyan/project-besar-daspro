@@ -29,7 +29,7 @@ public class TugasBesar {
             System.out.print("Jumlah SKS (1-3): ");
             sksMatkul[jumlahMahasiswa][jumlahMatkul] = sc.nextInt();
             sc.nextLine();
-            if (sksMatkul[jumlahMahasiswa][jumlahMatkul] > 3) {
+            if (sksMatkul[jumlahMahasiswa][jumlahMatkul] > 3 || sksMatkul[jumlahMahasiswa][jumlahMatkul] < 1) {
                 System.out.println("Jumlah SKS tidak valid! SKS harus antara 1 dan 3.");
                 continue;
             } else {
@@ -60,10 +60,6 @@ public class TugasBesar {
         System.out.println("\nDaftar KRS: ");
         System.out.printf("%-15s %-25s %-20s %-20s %-25s%n", "NIM", "Nama", "Kode MK", "Nama Mata Kuliah", "SKS");
         for (int i = 0; i < jumlahMahasiswa; i++) {
-            if (i == jumlahMahasiswa - 1 && !nimMahasiswa[i].equals(nim)) {
-                System.out.println("NIM yang anda cari tidak ada\n");
-                continue;
-            }
             if (nimMahasiswa[i].equals(nim)) {
                 for (int j = 0; j < jumlahMatkulPerMahasiswa[i]; j++) {
                     System.out.printf("%-15s %-25s %-20s %-20s %-25s%n", nimMahasiswa[i], namaMahasiswa[i], kodeMatkul[i][j], namaMatkul[i][j], sksMatkul[i][j]);
