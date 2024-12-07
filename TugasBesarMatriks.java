@@ -18,8 +18,8 @@ public class TugasBesarMatriks {
                 matriks[i][j] = sc.nextInt();
             }
         }
+        int[][] cofactorMatrix = new int[matriks.length][matriks.length];
         if (matriks.length == 3) {
-            int[][] cofactorMatrix = new int[3][3];
             cofactorMatrix[0][0] = (matriks[1][1] * matriks[2][2]) - (matriks[1][2] * matriks[2][1]);
             cofactorMatrix[0][1] = -1 * ((matriks[1][0] * matriks[2][2]) - (matriks[1][2] * matriks[2][0]));
             cofactorMatrix[0][2] = (matriks[1][0] * matriks[2][1]) - (matriks[1][1] * matriks[2][0]);
@@ -33,6 +33,24 @@ public class TugasBesarMatriks {
                 System.out.print("| ");
                 for (int l = 0; l < cofactorMatrix[k].length; l++) {
                     System.out.printf("%d ", cofactorMatrix[l][k]);
+                }
+                System.out.print("|");
+                System.out.println();
+            }
+        }  else {
+            for (int i = 1; i >= 0; i--) {
+                for (int j = 1; j >= 0; j--) {
+                    if ((i == 1 && j == 0) || (i == 0 && j == 1)) {
+                        cofactorMatrix[j][i] = -1 * matriks[j][i];
+                    } else {
+                        cofactorMatrix[j][i] = matriks[j][i];
+                    }
+                }
+            }
+            for (int i = 1; i >= 0; i--) {
+                System.out.print("| ");
+                for (int j = 1; j >= 0; j--) {
+                    System.out.printf("%d ", cofactorMatrix[j][i]);
                 }
                 System.out.print("|");
                 System.out.println();
@@ -82,7 +100,7 @@ public class TugasBesarMatriks {
                 System.out.print("Masukkan jumlah baris matriks 2: ");
                 baris2 = sc.nextInt();
                 if (baris2 != kolom1) {
-                    System.out.println("Baris matriks 2 harus sama dengan kolom matriks 1!");
+                    System.out.println("Baris matriks 2 dan kolom matriks 1 harus sama!");
                     continue;
                 } else {
                 System.out.print("Masukkan jumlah kolom matriks 2: ");
@@ -93,19 +111,20 @@ public class TugasBesarMatriks {
             } else {
                 switch (menu) {
                     case 4:
-                    System.out.println("1. 2x2\n2. 3x3");
+                    System.out.print("1. 2x2\n2. 3x3\nmenu: ");
                     int menuInvers = sc.nextInt();
-                    int[][] matriks = new int[menuInvers][menuInvers];
                     switch (menuInvers) {
                         case 1:
                         menuInvers = 2;
                             break;
                         case 2:
                         menuInvers = 3;
+                            break;
                         default:
                         System.out.println("Input invalid");
-                            break;
+                            continue;
                     }
+                    int[][] matriks = new int[menuInvers][menuInvers];
                     inversMatriks(matriks);
                         break;
                     case 6:
