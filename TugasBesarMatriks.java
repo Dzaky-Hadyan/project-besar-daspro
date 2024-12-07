@@ -14,12 +14,14 @@ public class TugasBesarMatriks {
         Scanner sc = new Scanner(System.in);
         for (int i = 0; i < matriks.length; i++) {
             for (int j = 0; j < matriks.length; j++) {
-                System.out.printf("Baris ke-%d Kolom ke-%d: ", i, j);
+                System.out.printf("Baris ke-%d Kolom ke-%d: ", i + 1, j + 1);
                 matriks[i][j] = sc.nextInt();
             }
         }
         int[][] cofactorMatrix = new int[matriks.length][matriks.length];
+        //Adjoin
         if (matriks.length == 3) {
+            //Minor-Kofaktor
             cofactorMatrix[0][0] = (matriks[1][1] * matriks[2][2]) - (matriks[1][2] * matriks[2][1]);
             cofactorMatrix[0][1] = -1 * ((matriks[1][0] * matriks[2][2]) - (matriks[1][2] * matriks[2][0]));
             cofactorMatrix[0][2] = (matriks[1][0] * matriks[2][1]) - (matriks[1][1] * matriks[2][0]);
@@ -29,6 +31,7 @@ public class TugasBesarMatriks {
             cofactorMatrix[2][0] = (matriks[0][1] * matriks[1][2]) - (matriks[0][2] * matriks[1][1]);
             cofactorMatrix[2][1] = -1 * ((matriks[0][0] * matriks[1][2]) - (matriks[0][2] * matriks[1][0]));
             cofactorMatrix[2][2] = (matriks[0][0] * matriks[1][1]) - (matriks[0][1] * matriks[1][0]);
+            //Transpose
             for (int k = 0; k < cofactorMatrix.length; k++) {
                 System.out.print("| ");
                 for (int l = 0; l < cofactorMatrix[k].length; l++) {
@@ -47,10 +50,17 @@ public class TugasBesarMatriks {
                     }
                 }
             }
+            float inversMatriks[][] = new float[cofactorMatrix.length][cofactorMatrix.length];
+            for (int i = 1; i >= 0; i--) {
+                for (int j = 1; j >= 0; j--) {
+                    inversMatriks[j][i] = ((1f/((matriks[0][0] * matriks[1][1]) - (matriks[0][1] * matriks[1][0]))) * cofactorMatrix[j][i]);
+                }
+            }
+            System.out.println("Hasil Inverse Matriks: ");
             for (int i = 1; i >= 0; i--) {
                 System.out.print("| ");
                 for (int j = 1; j >= 0; j--) {
-                    System.out.printf("%d ", cofactorMatrix[j][i]);
+                    System.out.printf("%.2f ", inversMatriks[j][i]);
                 }
                 System.out.print("|");
                 System.out.println();
