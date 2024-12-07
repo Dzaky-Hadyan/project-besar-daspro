@@ -40,8 +40,18 @@ public class TugasBesarMatriks {
         }
     }
     static void transposeMatriks(int matriks[][]) {
-
+        int baris = matriks.length;
+        int kolom = matriks[0].length;
+    
+        System.out.println("Hasil Transpose Matriks:");
+        for (int j = 0; j < kolom; j++) {
+            for (int i = 0; i < baris; i++) {
+                System.out.print(matriks[i][j] + " "); 
+            }
+            System.out.println();
+        }
     }
+    
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         int menu;
@@ -56,7 +66,7 @@ public class TugasBesarMatriks {
             System.out.print("Menu: ");
             menu = sc.nextInt();
             int baris = 0, kolom = 0, baris1, baris2, kolom1, kolom2;
-            if (menu == 1 || menu == 2 || menu == 5) {
+            if (menu == 1 || menu == 2) {
                 System.out.print("Masukkan jumlah baris matriks: ");
                 baris = sc.nextInt();
                 System.out.print("Masukkan jumlah kolom matriks: ");
@@ -68,9 +78,6 @@ public class TugasBesarMatriks {
                         break;
                     case 2:
                     kurangMatriks(matriks);
-                        break;
-                    case 5:
-                    transposeMatriks(matriks);
                         break;
                 }
             } else if (menu == 3) {
@@ -88,9 +95,29 @@ public class TugasBesarMatriks {
                 System.out.print("Masukkan jumlah kolom matriks 2: ");
                 kolom2 = sc.nextInt();
                 int matriks2[][] = new int[baris2][kolom2];
-                kaliMatriks(matriks1, matriks2);
+                kaliMatriks(matriks1, matriks2);       
                 }
-            } else {
+            }  else if (menu == 5) {
+                // Input matriks untuk transpose
+                System.out.print("Masukkan jumlah baris matriks: ");
+                baris = sc.nextInt();
+                System.out.print("Masukkan jumlah kolom matriks: ");
+                kolom = sc.nextInt();
+                
+                int matriks[][] = new int[baris][kolom];
+                
+                // Input elemen matriks
+                System.out.println("Masukkan elemen matriks:");
+                for (int i = 0; i < baris; i++) {
+                    for (int j = 0; j < kolom; j++) {
+                        System.out.printf("Baris %d Kolom %d: ", i + 1, j + 1);
+                        matriks[i][j] = sc.nextInt();
+                    }
+                }
+                
+                transposeMatriks(matriks); // Panggil fungsi transpose
+            } 
+            else {
                 switch (menu) {
                     case 4:
                     System.out.println("1. 2x2\n2. 3x3");
