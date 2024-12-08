@@ -1,7 +1,7 @@
 import java.util.Scanner;
 
 public class TugasBesarMatriks {
-    static void tambahMatrix(int matriks[][]) {
+    static void tambahMatrix(int matriks1[][], int matriks2[][]) {
         int baris = matriks1.length;
         int kolom = matriks1[0].length;
         int[][] hasil = new int[baris][kolom];
@@ -19,7 +19,7 @@ public class TugasBesarMatriks {
             System.out.println();
         }
     }
-    static void kurangMatriks(int matriks[][]) {
+    static void kurangMatriks(int matriks1[][], int matriks2[][]) {
         int baris = matriks1.length;
         int kolom = matriks1[0].length;
         int[][] hasil = new int[baris][kolom];
@@ -148,13 +148,33 @@ public class TugasBesarMatriks {
                 baris = sc.nextInt();
                 System.out.print("Masukkan jumlah kolom matriks: ");
                 kolom = sc.nextInt();
+
+                int matriks1[][] = new int[baris][kolom];
+                int matriks2[][] = new int[baris][kolom];
+
+                System.out.println("Masukkan elemen matriks 1: ");
+                for (int i = 0; i < baris; i++) {
+                    System.out.println("Baris ke-" + (i + 1) + ":");
+                    for (int j = 0; j < kolom; j++) {
+                        matriks1[i][j] = sc.nextInt();
+                    }
+                }
+
+                System.out.println("Masukkan elemen matriks 2: ");
+                for (int i = 0; i < baris; i++) {
+                    System.out.println("Baris ke-" + (i + 1) + ":");
+                    for (int j = 0; j < kolom; j++) {
+                        matriks2[i][j] = sc.nextInt();
+                    }
+                }
+
                 int matriks[][] = new int[baris][kolom];
                 switch (menu) {
                     case 1:
-                    tambahMatrix(matriks);
+                    tambahMatrix(matriks1, matriks2);
                         break;
                     case 2:
-                    kurangMatriks(matriks);
+                    kurangMatriks(matriks1, matriks2);
                         break;
                 }
             } else if (menu == 3) {
