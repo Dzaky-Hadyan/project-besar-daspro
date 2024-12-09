@@ -120,7 +120,7 @@ public class TugasBesarMatriks {
                     }
                 }
             }
-            // System.out.printf("Determinan: %f\n", determinanMatrix);
+            System.out.printf("Determinan: %f\n", determinanMatrix);
             System.out.println("Hasil Inverse Matriks:");
             for (int k = 0; k < cofactorMatrix.length; k++) {
                 System.out.print("| ");
