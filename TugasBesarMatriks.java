@@ -74,28 +74,28 @@ public class TugasBesarMatriks {
         // Adjoin
         if (matriks.length == 3) {
             // Minor-Kofaktor
-            // cofactorMatrix[0][0] = (matriks[1][1] * matriks[2][2]) - (matriks[1][2] * matriks[2][1]);
-            // cofactorMatrix[0][1] = -1 * ((matriks[1][0] * matriks[2][2]) - (matriks[1][2] * matriks[2][0]));
-            // cofactorMatrix[0][2] = (matriks[1][0] * matriks[2][1]) - (matriks[1][1] * matriks[2][0]);
-            // cofactorMatrix[1][0] = -1 * ((matriks[0][1] * matriks[2][2]) - (matriks[0][2] * matriks[2][1]));
-            // cofactorMatrix[1][1] = (matriks[0][0] * matriks[2][2]) - (matriks[0][2] * matriks[2][0]);
-            // cofactorMatrix[1][2] = -1 * ((matriks[0][0] * matriks[2][1]) - (matriks[0][1] * matriks[2][0]));
-            // cofactorMatrix[2][0] = (matriks[0][1] * matriks[1][2]) - (matriks[0][2] * matriks[1][1]);
-            // cofactorMatrix[2][1] = -1 * ((matriks[0][0] * matriks[1][2]) - (matriks[0][2] * matriks[1][0]));
-            // cofactorMatrix[2][2] = (matriks[0][0] * matriks[1][1]) - (matriks[0][1] * matriks[1][0]);
-            for (int i = 0; i < 3; i++) {
-                for (int j = 0; j < 3; j++) {
-                    if (j == 0) {
-                        cofactorMatrix[i][j] = (matriks[1 - i + (i * (i-1))/2][1] * matriks[][2]) - (matriks[1 - i + (i * (i-1))/2][2] * matriks[][1]);
-                    } else if (j == 1) {
-                        cofactorMatrix[i][j] = (matriks[1 - i + (i * (i-1))/2][0] * matriks[][2]) - (matriks[1 - i + (i * (i-1))/2][2] * matriks[][0]);
-                    } else if (j == 2) {
-                        cofactorMatrix[i][j] = (matriks[1 - i + (i * (i-1))/2][0] * matriks[][1]) - (matriks[1 - i + (i * (i-1))/2][1] * matriks[][0]);
-                    } if (j == 1 || i == 1) {
-                        cofactorMatrix[i][j] *= -1;
-                    }
-                }
-            }
+            cofactorMatrix[0][0] = (matriks[1][1] * matriks[2][2]) - (matriks[1][2] * matriks[2][1]);
+            cofactorMatrix[0][1] = -1 * ((matriks[1][0] * matriks[2][2]) - (matriks[1][2] * matriks[2][0]));
+            cofactorMatrix[0][2] = (matriks[1][0] * matriks[2][1]) - (matriks[1][1] * matriks[2][0]);
+            cofactorMatrix[1][0] = -1 * ((matriks[0][1] * matriks[2][2]) - (matriks[0][2] * matriks[2][1]));
+            cofactorMatrix[1][1] = (matriks[0][0] * matriks[2][2]) - (matriks[0][2] * matriks[2][0]);
+            cofactorMatrix[1][2] = -1 * ((matriks[0][0] * matriks[2][1]) - (matriks[0][1] * matriks[2][0]));
+            cofactorMatrix[2][0] = (matriks[0][1] * matriks[1][2]) - (matriks[0][2] * matriks[1][1]);
+            cofactorMatrix[2][1] = -1 * ((matriks[0][0] * matriks[1][2]) - (matriks[0][2] * matriks[1][0]));
+            cofactorMatrix[2][2] = (matriks[0][0] * matriks[1][1]) - (matriks[0][1] * matriks[1][0]);
+            // for (int i = 0; i < 3; i++) {
+            //     for (int j = 0; j < 3; j++) {
+            //         if (j == 0) {
+            //             cofactorMatrix[i][j] = (matriks[1 - i + (i * (i-1))/2][1] * matriks[][2]) - (matriks[1 - i + (i * (i-1))/2][2] * matriks[][1]);
+            //         } else if (j == 1) {
+            //             cofactorMatrix[i][j] = (matriks[1 - i + (i * (i-1))/2][0] * matriks[][2]) - (matriks[1 - i + (i * (i-1))/2][2] * matriks[][0]);
+            //         } else if (j == 2) {
+            //             cofactorMatrix[i][j] = (matriks[1 - i + (i * (i-1))/2][0] * matriks[][1]) - (matriks[1 - i + (i * (i-1))/2][1] * matriks[][0]);
+            //         } if (j == 1 || i == 1) {
+            //             cofactorMatrix[i][j] *= -1;
+            //         }
+            //     }
+            // }
             // Transpose
             System.out.println("Adjoint: ");
             for (int k = 0; k < cofactorMatrix.length; k++) {
@@ -173,7 +173,6 @@ public class TugasBesarMatriks {
     }
 
     public static void main(String[] args) {
-        System.out.printf("Amogus: %d", 0%2);
         int menu;
         do {
             System.out.println("=== Operasi Matriks ===");
