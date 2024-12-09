@@ -121,6 +121,9 @@ public class TugasBesarMatriks {
                 }
             }
             System.out.printf("Determinan: %f\n", determinanMatrix);
+            if (determinanMatrix == 0) {
+                System.out.println("Matriks dengan determinan 0 tidak memiliki invers");
+            }
             System.out.println("Hasil Inverse Matriks:");
             for (int k = 0; k < cofactorMatrix.length; k++) {
                 System.out.print("| ");
