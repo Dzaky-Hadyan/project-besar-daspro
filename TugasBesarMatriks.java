@@ -54,6 +54,11 @@ public class TugasBesarMatriks {
                 }
             }
         }
+        /* 12       123
+         * 34   x   456
+         * 56
+         * 
+         */
         System.out.println("Hasil perkalian matriks: ");
         for (int i = 0; i < baris1; i++) {
             for (int j = 0; j < kolom2; j++) {
@@ -72,7 +77,8 @@ public class TugasBesarMatriks {
         }
         float[][] cofactorMatrix = new float[matriks.length][matriks.length];
         // Adjoin
-        if (matriks.length == 3) {
+        switch (matriks.length) {
+            case 3:
             // Minor-Kofaktor
             cofactorMatrix[0][0] = (matriks[1][1] * matriks[2][2]) - (matriks[1][2] * matriks[2][1]);
             cofactorMatrix[0][1] = -1 * ((matriks[1][0] * matriks[2][2]) - (matriks[1][2] * matriks[2][0]));
@@ -83,19 +89,6 @@ public class TugasBesarMatriks {
             cofactorMatrix[2][0] = (matriks[0][1] * matriks[1][2]) - (matriks[0][2] * matriks[1][1]);
             cofactorMatrix[2][1] = -1 * ((matriks[0][0] * matriks[1][2]) - (matriks[0][2] * matriks[1][0]));
             cofactorMatrix[2][2] = (matriks[0][0] * matriks[1][1]) - (matriks[0][1] * matriks[1][0]);
-            // for (int i = 0; i < 3; i++) {
-            //     for (int j = 0; j < 3; j++) {
-            //         if (j == 0) {
-            //             cofactorMatrix[i][j] = (matriks[1 - i + (i * (i-1))/2][1] * matriks[][2]) - (matriks[1 - i + (i * (i-1))/2][2] * matriks[][1]);
-            //         } else if (j == 1) {
-            //             cofactorMatrix[i][j] = (matriks[1 - i + (i * (i-1))/2][0] * matriks[][2]) - (matriks[1 - i + (i * (i-1))/2][2] * matriks[][0]);
-            //         } else if (j == 2) {
-            //             cofactorMatrix[i][j] = (matriks[1 - i + (i * (i-1))/2][0] * matriks[][1]) - (matriks[1 - i + (i * (i-1))/2][1] * matriks[][0]);
-            //         } if (j == 1 || i == 1) {
-            //             cofactorMatrix[i][j] *= -1;
-            //         }
-            //     }
-            // }
             // Transpose
             System.out.println("Adjoint: ");
             for (int k = 0; k < cofactorMatrix.length; k++) {
@@ -123,6 +116,7 @@ public class TugasBesarMatriks {
             System.out.printf("Determinan: %f\n", determinanMatrix);
             if (determinanMatrix == 0) {
                 System.out.println("Matriks dengan determinan 0 tidak memiliki invers");
+                break;
             }
             System.out.println("Hasil Inverse Matriks:");
             for (int k = 0; k < cofactorMatrix.length; k++) {
@@ -133,38 +127,51 @@ public class TugasBesarMatriks {
                 System.out.print("|");
                 System.out.println();
             }
-        } else {
+            case 2:
             for (int i = 1; i >= 0; i--) {
-                for (int j = 1; j >= 0; j--) {
-                    if ((i == 1 && j == 0) || (i == 0 && j == 1)) {
-                        cofactorMatrix[j][i] = -1 * matriks[j][i];
+                for (int k = 1; k >= 0; k--) {
+                    if ((i == 1 && k == 0) || (i == 0 && k == 1)) {
+                        cofactorMatrix[k][i] = -1 * matriks[k][i];
                     } else {
-                        cofactorMatrix[j][i] = matriks[j][i];
+                        cofactorMatrix[k][i] = matriks[k][i];
                     }
                 }
             }
             float inversMatriks[][] = new float[cofactorMatrix.length][cofactorMatrix.length];
             for (int i = 1; i >= 0; i--) {
-                for (int j = 1; j >= 0; j--) {
-                    inversMatriks[j][i] = ((1f / ((matriks[0][0] * matriks[1][1]) - (matriks[0][1] * matriks[1][0])))
-                            * cofactorMatrix[j][i]);
+                for (int k = 1; k >= 0; k--) {
+                    inversMatriks[k][i] = ((1f / ((matriks[0][0] * matriks[1][1]) - (matriks[0][1] * matriks[1][0])))
+                            * cofactorMatrix[k][i]);
                 }
+            }
+            if (((matriks[0][0] * matriks[1][1]) - (matriks[0][1] * matriks[1][0])) == 0) {
+                System.out.println("Matriks dengan determinan 0 tidak memiliki invers");
+                break;
             }
             System.out.println("Hasil Inverse Matriks: ");
             for (int i = 1; i >= 0; i--) {
                 System.out.print("| ");
-                for (int j = 1; j >= 0; j--) {
-                    System.out.printf("%.2f ", inversMatriks[j][i]);
+                for (int k = 1; k >= 0; k--) {
+                    System.out.printf("%.2f ", inversMatriks[k][i]);
                 }
                 System.out.print("|");
                 System.out.println();
             }
+            break;
         }
     }
 
     static void transposeMatriks(int matriks[][]) {
         int baris = matriks.length;
         int kolom = matriks[0].length;
+
+        System.out.println("Sebelum di transpose");
+        for (int j = 0; j < baris; j++) {
+            for (int i = 0; i < kolom; i++) {
+                System.out.print(matriks[j][i] + " ");
+            }
+            System.out.println();
+        }
 
         System.out.println("Hasil Transpose Matriks:");
         for (int j = 0; j < kolom; j++) {
@@ -226,6 +233,9 @@ public class TugasBesarMatriks {
                 baris1 = sc.nextInt();
                 System.out.print("Masukkan jumlah kolom matriks 1: ");
                 kolom1 = sc.nextInt();
+                System.out.print("Masukkan jumlah baris matriks 2: ");
+                baris2 = sc.nextInt();
+                
                 int matriks1[][] = new int[baris1][kolom1];
 
                 System.out.println("Masukkan elemen matriks 1: ");
@@ -236,8 +246,7 @@ public class TugasBesarMatriks {
                     }
                 }
 
-                System.out.print("Masukkan jumlah baris matriks 2: ");
-                baris2 = sc.nextInt();
+                
                 if (baris2 != kolom1) {
                     System.out.println("Baris matriks 2 dan kolom matriks 1 harus sama!");
                     continue;
