@@ -184,14 +184,6 @@ public class TugasBesarMatriks {
                 kolom1 = sc.nextInt();
                 int matriks1[][] = new int[baris1][kolom1];
 
-                System.out.println("Masukkan elemen matriks 1: ");
-                for (int i = 0; i < baris1; i++) {
-                    System.out.println("Baris ke-" + (i + 1) + ":");
-                    for (int j = 0; j < kolom1; j++) {
-                        matriks1[i][j] = sc.nextInt();
-                    }
-                }
-
                 System.out.print("Masukkan jumlah baris matriks 2: ");
                 baris2 = sc.nextInt();
                 if (baris2 != kolom1) {
@@ -201,6 +193,14 @@ public class TugasBesarMatriks {
                 System.out.print("Masukkan jumlah kolom matriks 2: ");
                 kolom2 = sc.nextInt();
                 int matriks2[][] = new int[baris2][kolom2];
+
+                System.out.println("Masukkan elemen matriks 1: ");
+                for (int i = 0; i < baris1; i++) {
+                    System.out.println("Baris ke-" + (i + 1) + ":");
+                    for (int j = 0; j < kolom1; j++) {
+                        matriks1[i][j] = sc.nextInt();
+                    }
+                }
 
                 System.out.println("Masukkan elemen matriks 2: ");
                 for (int i = 0; i < baris2; i++) {
